@@ -23,7 +23,7 @@ export const OfferFormCreate = () => {
         />
 
         {/* Offer short name */}
-        s<TextInput
+        <TextInput
           label={OFFER_CREATE_FORM_FIELDS_LABEL.short_name}
           error={getFieldErrorMessage(OFFER_CREATE_FORM_FIELDS.short_name)}
           placeholder={OFFER_CREATE_FORM_FIELDS_PLACEHOLDER.short_name}
