@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: Example API for article
+  description: Article "Fully typed forms based on API Schema with react-hook-form with yup validation"
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /api/offers:
+    post:
+      summary: Create offer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferPostBody'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferId'
+components:
+  schemas:
+    OfferPostBody:
+      required:
+        - name
+        - short_name
+        - advertiser_id
+        - model
+      properties:
+        name:
+          description: Full offer name
+          type: string
+          maxLength: 1024
+          x-oapi-codegen-extra-tags:
+            validate: "required,notBlank,lte=1024"
+        short_name:
+          description: Short offer name
+          type: string
+          maxLength: 1024
+          x-oapi-codegen-extra-tags:
+            validate: "required,notBlank,lte=1024"
+        advertiser_id:
+          description: Id of the advertiser
+          type: integer
+          x-oapi-codegen-extra-tags:
+            validate: "required"
+        model:
+          description: Model alias
+          type: string
+          x-oapi-codegen-extra-tags:
+            validate: "required,notBlank,lte=1024"
+
+    OfferId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the offer
